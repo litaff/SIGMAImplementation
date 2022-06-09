@@ -142,12 +142,11 @@ public class Sigma
             var byteConverter = new UTF8Encoding();
             var msgToVerify = byteConverter.GetBytes(_partner.Identity);
             var error = false;
-            // Initialize the keyed hash object.
+            
             using (var hmac = new HMACSHA256(MacKey()))
             {
 
                 var computedHash = hmac.ComputeHash(msgToVerify);
-                // compare the computed hash with the stored value
 
                 for (var i = 0; i < signedMsg.Length; i++)
                 {
@@ -160,7 +159,7 @@ public class Sigma
             Console.WriteLine($"{Identity}: Partner identity verified: {!error}");
             return !error;
         
-        } //end VerifyFile
+        }
 
     #endregion
 

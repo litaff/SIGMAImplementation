@@ -133,7 +133,9 @@ public class Sigma
             var byteConverter = new UTF8Encoding();
             var msgToSign = byteConverter.GetBytes(msg);
             using var hmac = new HMACSHA256(MacKey());
-            return hmac.ComputeHash(msgToSign);
+            var sign = hmac.ComputeHash(msgToSign);
+            Helper.Debug($"{Identity} SignMac out: "+Helper.ByteArrayToString(sign),_debug);
+            return sign;
         }
         
         /// <returns> True if maced _partner.Identity is the same as signedMsg</returns>

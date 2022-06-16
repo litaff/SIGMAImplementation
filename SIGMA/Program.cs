@@ -24,10 +24,12 @@ try
         {
             case "alice":
                 alice.SendSigmaMsg(msg, out encryptedMessage, out iv);
+                Helper.Debug($"Encrypted message ({msg}): " + Helper.ByteArrayToString(encryptedMessage),debug);
                 bob.ReceiveSigmaMsg(encryptedMessage, iv);
                 break;
             case "bob":
                 bob.SendSigmaMsg(msg, out encryptedMessage, out iv);
+                Helper.Debug($"Encrypted message ({msg}): " + Helper.ByteArrayToString(encryptedMessage),debug);
                 alice.ReceiveSigmaMsg(encryptedMessage, iv);
                 break;
             default:
